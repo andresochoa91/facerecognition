@@ -3,7 +3,7 @@ import React from 'react';
 const ImageLinkForm = () => {
 	return(
 		<div>
-			<p className="f3">
+			<p className="f3" style={{display: "flex", justifyContent: "center"}}>
 				{ "Brain that detects faces" }
 			</p>
 			<div>
