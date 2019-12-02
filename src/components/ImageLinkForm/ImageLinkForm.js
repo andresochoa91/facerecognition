@@ -2,13 +2,13 @@ import React from 'react';
 
 const ImageLinkForm = () => {
 	return(
-		<div>
-			<p className="f3" style={{display: "flex", justifyContent: "center"}}>
-				{ "Brain that detects faces" }
+		<div className="center" style={{display: "flex", flexDirection: "column"}}>
+			<p className="f3 center" >
+				{ "Racoon that detects faces" }
 			</p>
-			<div>
+			<div className="pa4 br3 shadow-5 center form" >
 				<input className="f4 pa2 w-70 center" type="text"/>
-				<button className="w-30 grow f4 link ph3 pv2 dib white bg-purple">Hey</button>
+				<button className="w-30 grow f4 link ph3 pv2 dib white bg-purple" style={{cursor: "pointer"}}>Detect</button>
 			</div>
 		</div>
 	);
