@@ -26,6 +26,10 @@ class App extends Component {
         <Particles className="particles" params={particlesOption} />
         <Navigation />
         <Logo />
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <Rank />
         <ImageLinkForm />
         {/*<FaceRecognition />*/}
