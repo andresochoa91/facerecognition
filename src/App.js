@@ -5,6 +5,7 @@ import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import "tachyons";
 import Particles from 'react-particles-js';
+import Rank from './components/Rank/Rank';
 
 const particlesOption = {
   particles: {
@@ -25,6 +26,7 @@ class App extends Component {
         <Particles className="particles" params={particlesOption} />
         <Navigation />
         <Logo />
+        <Rank />
         <ImageLinkForm />
         {/*<FaceRecognition />*/}
       </div>
