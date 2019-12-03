@@ -30,7 +30,7 @@ class App extends Component {
     super()
     this.state = {
       input: "",
-      imageURL: "https://www.doyourownpestcontrol.com/images/shutterstock_raccoon-500-t.jpg",
+      imageURL: "",
 
     }
   }
@@ -40,13 +40,11 @@ class App extends Component {
   }
 
   onButtonSubmit = (event) => {
-    console.log(this.state.input);
     this.setState({ imageURL: this.state.input })
-    app.models.predict(
-      Clarifai.FACE_DETECT_MODEL, this.state.imageURL)
+    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
                   .then(
       function(response) {
-        console.log(response)  // do something with response
+        console.log(response.outputs[0].data.regions[0].region_info.bounding_box)  // do something with response
       },
       function(err) {
         // there was an error
