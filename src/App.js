@@ -8,6 +8,7 @@ import "tachyons";
 import Particles from 'react-particles-js';
 import Rank from './components/Rank/Rank';
 import Clarifai from 'clarifai';
+import SignIn from './components/SignIn/SignIn';
 
 const app = new Clarifai.App({
  apiKey: 'a5859fd113154c43a55a9bd841ca1987'
@@ -32,7 +33,8 @@ class App extends Component {
     this.state = {
       input: "",
       imageURL: "",
-      box: {}
+      box: {},
+      route: "signin"
     }
   }
 
@@ -65,7 +67,7 @@ class App extends Component {
       .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
       .catch(err => console.log("Error", err))
   }
-
+ 
   render(){
     return(
       <div style={{display: "flex", flexDirection: "column"}}>
@@ -75,6 +77,7 @@ class App extends Component {
         <Rank />
         <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
         <FaceRecognition box={ this.state.box }image={ this.state.imageURL }/>
+        <SignIn />
       </div>
     )
   }
