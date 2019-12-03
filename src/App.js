@@ -10,6 +10,7 @@ import Rank from './components/Rank/Rank';
 import Clarifai from 'clarifai';
 import SignIn from './components/SignIn/SignIn';
 
+
 const app = new Clarifai.App({
  apiKey: 'a5859fd113154c43a55a9bd841ca1987'
 });
@@ -71,13 +72,18 @@ class App extends Component {
   render(){
     return(
       <div style={{display: "flex", flexDirection: "column"}}>
-        <Particles className="particles" params={ particlesOption } />
         <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
-        <FaceRecognition box={ this.state.box }image={ this.state.imageURL }/>
-        <SignIn />
+        {
+          this.state.route !== "signin"?
+          <div>
+            <Particles className="particles" params={ particlesOption } />
+            <Logo />
+            <Rank />
+            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
+            <FaceRecognition box={ this.state.box }image={ this.state.imageURL }/>            
+          </div>:
+          <SignIn />
+        }
       </div>
     )
   }
