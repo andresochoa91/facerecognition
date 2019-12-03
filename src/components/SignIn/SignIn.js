@@ -1,6 +1,6 @@
 import React from "react";
 
-const SignIn = () => {
+const SignIn = ({ pushed }) => {
 	return(
 		<div className="center ma4">
 			<main className="pa4 black-80 center shadow-1">
@@ -20,7 +20,7 @@ const SignIn = () => {
 			      </label>
 			    </fieldset>
 			    <div className="">
-			      <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" />
+			      <input onClick={ pushed } className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="button" value="Sign in" />
 			    </div>
 			    <div className="lh-copy mt3">
 			      <a href="#0" className="f6 link dim black db">Sign up</a>
