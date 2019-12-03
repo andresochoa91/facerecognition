@@ -31,7 +31,7 @@ class App extends Component {
     this.state = {
       input: "",
       imageURL: "",
-
+      box: {},
     }
   }
 
@@ -42,16 +42,9 @@ class App extends Component {
   onButtonSubmit = (event) => {
     this.setState({ imageURL: this.state.input })
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
-                  .then(
-      function(response) {
-        console.log(response.outputs[0].data.regions[0].region_info.bounding_box)  // do something with response
-      },
-      function(err) {
-        // there was an error
-      }
-    );  
+      .then(response => console.log(response.outputs[0].data.regions[0].region_info.bounding_box.top_row))
+      .catch(err => console.log("Error", err))
   }
-
 
   render(){
     return(
