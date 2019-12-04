@@ -85,7 +85,10 @@ class App extends Component {
 
   signUpForm = () => {
     return(
-      <SignUp onClickSign={ this.onClickSign }/>      
+      <div>
+        <Navigation onClickSign={ this.onClickSign }/>
+        <SignUp onClickSign={ this.onClickSign }/>              
+      </div>
     );
   }
 
