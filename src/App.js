@@ -95,7 +95,6 @@ class App extends Component {
     return(
       <div>
         <Navigation onClickSign={ this.onClickSign }/>
-        <Particles className="particles" params={ particlesOption } />
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
@@ -108,6 +107,7 @@ class App extends Component {
     return(
       <div style={{display: "flex", flexDirection: "column"}}>
         <div>
+          <Particles className="particles" params={ particlesOption } />
           {
             this.state.route === "signin"?
                this.mainPage():
