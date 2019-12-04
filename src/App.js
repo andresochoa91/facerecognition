@@ -9,6 +9,7 @@ import Particles from 'react-particles-js';
 import Rank from './components/Rank/Rank';
 import Clarifai from 'clarifai';
 import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 
 
 const app = new Clarifai.App({
@@ -21,7 +22,7 @@ const particlesOption = {
       value: 30,
       density: {
         enable: true,
-        value_area: 200,
+        value_area: 120,
       }
     }
   }
@@ -35,14 +36,16 @@ class App extends Component {
       input: "",
       imageURL: "",
       box: {},
-      route: "signin"
+      route: "signout"
     }
   }
 
-  pushed = (event) => {
-    this.state.route === "signin"?
-      this.setState({ route: "signedin" }):
-      this.setState({ route: "signin" })
+  onClickSign = (event) => {
+    event.target.id === "signout"?
+      this.setState({ route: "signout" }):
+      (event.target.id === "signin"?
+        this.setState({ route: "signin" }):
+        this.setState({ route: "signup" })) 
   }
 
   onInputChange = (event) => {
@@ -51,7 +54,6 @@ class App extends Component {
 
   calculateFaceLocation = (data) => {
     const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
-    console.log(clarifaiFace)
     const image = document.getElementById("image");
     const widthImage = Number(image.width);
     const heightImage = Number(image.height);    
@@ -75,21 +77,41 @@ class App extends Component {
       .catch(err => console.log("Error", err))
   }
  
+  signInForm = () => {
+    return(  
+      <SignIn onClickSign={ this.onClickSign }/>
+    );
+  }
+
+  signUpForm = () => {
+    return(
+      <SignUp onClickSign={ this.onClickSign }/>      
+    );
+  }
+
+  mainPage = () => {
+    return(
+      <div>
+        <Navigation onClickSign={ this.onClickSign }/>
+        <Particles className="particles" params={ particlesOption } />
+        <Logo />
+        <Rank />
+        <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
+        <FaceRecognition box={ this.state.box }image={ this.state.imageURL }/>                  
+      </div>
+    )
+  }
+
   render(){
     return(
       <div style={{display: "flex", flexDirection: "column"}}>
-        {
-          this.state.route !== "signin"?
-          <div>
-            <Navigation pushed={ this.pushed } />
-            <Particles className="particles" params={ particlesOption } />
-            <Logo />
-            <Rank />
-            <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
-            <FaceRecognition box={ this.state.box }image={ this.state.imageURL }/>            
-          </div>:
-          <SignIn pushed={ this.pushed } />
-        }
+        <div>
+          {
+            this.state.route === "signin"?
+               this.mainPage():
+               (this.state.route === "signout"? this.signInForm(): this.signUpForm())    
+          }
+        </div>
       </div>
     )
   }

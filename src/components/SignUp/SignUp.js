@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
 
-const SignIn = ({ onClickSign }) => {
+const SignUp = ({ onClickSign }) => {
 	return(
-		<div className="center ma4">
+		<div>
+			<nav style={{display: "flex", justifyContent: "flex-end"}}>
+				<p className="f3 link dim black underline pa3 pointer" onClick={ onClickSign } id="signout">Sign in</p>	
+			</nav>
+					<div className="center ma4">
 			<main className="pa4 black-80 center shadow-1">
 			  <form className="measure">
 			    <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-			      <legend className="f1 fw6 ph0 mh0">Sign In</legend>
+			      <legend className="f1 fw6 ph0 mh0">Sign Up</legend>
 			      <div className="mt3">
 			        <label className="db fw6 lh-copy f6" type="email">Email</label>
 			        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="email" name="email-address"  id="email-address" />
@@ -24,8 +28,10 @@ const SignIn = ({ onClickSign }) => {
 			    </div>
 			  </form>
 			</main>
+		</div>			
 		</div>
+
 	)
 }
 
-export default SignIn;
+export default SignUp;
