@@ -92,26 +92,28 @@ class App extends Component {
   }
 
   mainPage = () => {
+    const { box, imageURL } = this.state;
     return(
       <div>
         <Navigation onClickSign={ this.onClickSign }/>
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={ this.onInputChange } onButtonSubmit={ this.onButtonSubmit }/>
-        <FaceRecognition box={ this.state.box }image={ this.state.imageURL }/>                  
+        <FaceRecognition box={ box }image={ imageURL }/>                  
       </div>
     )
   }
 
   render(){
+    const { route } = this.state;
     return(
       <div style={{display: "flex", flexDirection: "column"}}>
         <div>
           <Particles className="particles" params={ particlesOption } />
           {
-            this.state.route === "signin"?
+            route === "signin"?
                this.mainPage():
-               (this.state.route === "signout"? this.signInForm(): this.signUpForm())    
+               (route === "signout"? this.signInForm(): this.signUpForm())    
           }
         </div>
       </div>
