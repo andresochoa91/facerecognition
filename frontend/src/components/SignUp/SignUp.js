@@ -1,6 +1,26 @@
 import React, { Component } from 'react';
 
 class SignUp extends Component {
+	constructor() {
+		super()
+		this.state = {
+			signUpName: "",
+			signUpEmail: "",
+			signUpPassword: ""
+		} 
+	}
+
+	onNameChange = (event) => {
+		this.setState({ signUpName: event.target.value })
+	}
+
+	onEmailChange = (event) => {
+		this.setState({ signUpEmail: event.target.value })
+	}
+
+	onPasswordChange = (event) => {
+		this.setState({ signUpPassword: event.target.value })
+	}
 
 	OnSubmitSignUp = () => {
 		this.props.onClickSign("signin")
@@ -32,6 +52,7 @@ class SignUp extends Component {
 					        	   type="text" 
 					        	   name="fullName"  
 					        	   id="fullName"
+					        	   onChange={ this.onNameChange }
 					       	/>
 					      </div>
 					      <div className="mt3">
@@ -40,6 +61,7 @@ class SignUp extends Component {
 					        	   type="email" 
 					        	   name="email-address"  
 					        	   id="email-address" 
+					        	   onChange={ this.onEmailChange }
 					       	/>
 					      </div>
 					      <div className="mv3">
@@ -48,6 +70,7 @@ class SignUp extends Component {
 					        	   type="password" 
 					        	   name="password"  
 					        	   id="password"
+					        	   onChange={ this.onPasswordChange }
 					        />
 					      </div>
 					    </fieldset>
