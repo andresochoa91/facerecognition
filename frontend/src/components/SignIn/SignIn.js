@@ -18,7 +18,23 @@ class SignIn extends Component {
 	}
 
 	onSubmitSignIn = () => {
-		this.props.onClickSign("signin")
+		fetch('http://localhost:3000/signin', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				email: this.state.signInEmail,
+				password: this.state.signInPassword
+			})
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data === "success") {
+				this.props.onClickSign("signin")			
+			}
+		})
+
+		console.log(this.state)
+
 	}
 
 	onSubmitSignUp = () => {
@@ -46,7 +62,8 @@ class SignIn extends Component {
 					        	className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
 					        	type="email" 
 					        	name="email-address"  
-					        	id="email-address" 
+					        	id="email-address"
+					        	onChange={ this.onEmailChange } 
 					        />
 					      </div>
 					      <div className="mv3">
@@ -56,6 +73,7 @@ class SignIn extends Component {
 					        	type="password" 
 					        	name="password"  
 					        	id="password"
+					        	onChange={ this.onPasswordChange }
 					        />
 					      </div>
 					    </fieldset>
