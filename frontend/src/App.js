@@ -13,7 +13,7 @@ import SignUp from './components/SignUp/SignUp';
 
 
 const app = new Clarifai.App({
- apiKey: 'a5859fd113154c43a55a9bd841ca1987'
+  apiKey: 'a5859fd113154c43a55a9bd841ca1987'
 });
 
 const particlesOption = {
@@ -36,7 +36,14 @@ class App extends Component {
       input: "",
       imageURL: "",
       box: {},
-      route: "signout"
+      route: "signout",
+      user: {
+        id: "",
+        name: "",
+        email: "",
+        entries: 0,
+        joined: ""
+      }
     }
   }
 
@@ -45,6 +52,17 @@ class App extends Component {
 //      .then(response => response.json())
 //      .then(console.log)
 //  }
+
+  loadUser = (data) => {
+    this.setState({ user: {
+          id: data.id,
+          name: data.name,
+          email: data.email,
+          entries: data.entries,
+          joined: data.joined
+      }
+    })
+  }
 
   onClickSign = (something) => {
     something === "signout"?
@@ -84,15 +102,17 @@ class App extends Component {
   }
  
   signInForm = () => {
-    return(  
-      <SignIn onClickSign={ this.onClickSign }/>
+    return(
+      <div>
+        <SignIn onClickSign={ this.onClickSign }/>
+      </div>  
     );
   }
 
   signUpForm = () => {
     return(
       <div>
-        <SignUp onClickSign={ this.onClickSign }/>              
+        <SignUp loadUser={ this.loadUser } onClickSign={ this.onClickSign }/>              
       </div>
     );
   }

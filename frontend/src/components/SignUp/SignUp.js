@@ -22,12 +22,30 @@ class SignUp extends Component {
 		this.setState({ signUpPassword: event.target.value })
 	}
 
-	OnSubmitSignUp = () => {
-		this.props.onClickSign("signin")
-	}
-
 	onSubmitSignIn = () => {
 		this.props.onClickSign("signout")
+	}
+
+	OnSubmitSignUp = () => {
+		fetch('http://localhost:3000/signup', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				name: this.state.signUpName,
+				email: this.state.signInEmail,
+				password: this.state.signInPassword
+			})
+		})
+		.then(response => response.json())
+		.then(user => {
+			if (user) {
+				this.props.loadUser(user)
+				this.props.onClickSign("signin")			
+			}
+		})
+
+		console.log(this.state)
+
 	}
 
 	render(){

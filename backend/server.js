@@ -57,7 +57,7 @@ app.post('/signin', (req, res) => {
 	}
 })
 
-app.post('/register', (req, res) => {
+app.post('/signup', (req, res) => {
 	const { email, name, password } = req.body;
 	bcrypt.hash(password, null, null, function(err, hash) {
 	  console.log(hash);
@@ -67,7 +67,6 @@ app.post('/register', (req, res) => {
 		id: "125",
 		name: name,
 		email: email,
-		password: password,
 		entries: 0,
 		joined: new Date()
 	})
