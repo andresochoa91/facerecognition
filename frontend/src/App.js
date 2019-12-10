@@ -40,10 +40,16 @@ class App extends Component {
     }
   }
 
-  onClickSign = (event) => {
-    event.target.id === "signout"?
+//  componentDidMount() {
+//    fetch('http://localhost:3000/')
+//      .then(response => response.json())
+//      .then(console.log)
+//  }
+
+  onClickSign = (something) => {
+    something === "signout"?
       this.setState({ route: "signout" }):
-      (event.target.id === "signin"?
+      (something === "signin"?
         this.setState({ route: "signin" }):
         this.setState({ route: "signup" })) 
   }
