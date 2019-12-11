@@ -26,15 +26,14 @@ class SignIn extends Component {
 				password: this.state.signInPassword
 			})
 		})
-		.then(response => response.json())
-		.then(data => {
-			if (data === "success") {
-				this.props.onClickSign("signin")			
-			}
-		})
-
+        .then(response => response.json())
+        	.then(user => {
+            	if(user.id){
+            		this.props.loadUser(user);
+              		this.props.onClickSign("signin");
+            	}
+          	})
 		console.log(this.state)
-
 	}
 
 	onSubmitSignUp = () => {
