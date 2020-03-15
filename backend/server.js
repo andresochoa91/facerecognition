@@ -2,6 +2,19 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
+const knex = require('knex');
+
+const db = knex({
+	client: 'pg',
+	connection: {
+	    host : '127.0.0.1',
+	    user : 'postgres',
+	    password : '666',
+	    database : 'faceRecognition'
+	}
+});
+
+db.select('*').from('users').then(data => console.log(data));
 
 const app = express();
 
@@ -58,19 +71,23 @@ app.post('/signin', (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
+	console.log(req.body)
 	const { email, name, password } = req.body;
-	bcrypt.hash(password, null, null, function(err, hash) {
-	  console.log(hash);
-	});
+//	bcrypt.hash(password, null, null, function(err, hash) {
+//	  console.log(hash);
+//	});
 
-	database.users.push({
-		id: "125",
-		name: name,
-		email: email,
-		entries: 0,
-		joined: new Date()
+	db('users')
+		.returning('*')
+		.insert({
+			name: name,
+			email: email,
+			joined: new Date()
 	})
-	res.json(database.users[database.users.length - 1])
+	.then(user => {
+		res.json(user[0]);
+	})
+	.catch(err => res.status(400).json('unable to sign up'))
 })
 
 app.get('/profile/:id', (req, res) => {
