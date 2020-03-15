@@ -32,8 +32,8 @@ class SignUp extends Component {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
 				name: this.state.signUpName,
-				email: this.state.signInEmail,
-				password: this.state.signInPassword
+				email: this.state.signUpEmail,
+				password: this.state.signUpPassword
 			})
 		})
 		.then(response => response.json())
