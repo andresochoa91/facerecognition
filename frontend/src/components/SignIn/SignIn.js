@@ -27,13 +27,14 @@ class SignIn extends Component {
 			})
 		})
         .then(response => response.json())
-        	.then(user => {
-            	if(user.id){
-            		this.props.loadUser(user);
-              		this.props.onClickSign("signin");
-            	}
-          	})
-		console.log(this.state)
+        .then(user => {
+        	if(user.id){
+        		this.props.loadUser(user);
+          		this.props.onClickSign("signin");
+        	} else {
+				alert("Email and/or password incorrect. Try again!");
+			}	
+		})
 	}
 
 	onSubmitSignUp = () => {
