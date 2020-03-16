@@ -28,7 +28,6 @@ const particlesOption = {
   }
 }
 
-
 class App extends Component {
   constructor(){
     super()
@@ -47,12 +46,6 @@ class App extends Component {
     }
   }
 
-//  componentDidMount() {
-//    fetch('http://localhost:3000/')
-//      .then(response => response.json())
-//      .then(console.log)
-//  }
-
   loadUser = (data) => {
     this.setState({ user: {
           id: data.id,
@@ -66,7 +59,7 @@ class App extends Component {
 
   onClickSign = (something) => {
     something === "signout"?
-      this.setState({ route: "signout" }):
+      this.setState({ route: "signout", imageURL: "" }):
       (something === "signin"?
         this.setState({ route: "signin" }):
         this.setState({ route: "signup" })) 
