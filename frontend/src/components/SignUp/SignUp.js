@@ -43,9 +43,7 @@ class SignUp extends Component {
 				this.props.onClickSign("signin")			
 			}
 		})
-
-		console.log(this.state)
-
+		.catch(console.log);
 	}
 
 	render(){
