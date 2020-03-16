@@ -11,7 +11,6 @@ import Clarifai from 'clarifai';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 
-
 const app = new Clarifai.App({
   apiKey: 'a5859fd113154c43a55a9bd841ca1987'
 });
