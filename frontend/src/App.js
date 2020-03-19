@@ -7,13 +7,8 @@ import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import "tachyons";
 import Particles from 'react-particles-js';
 import Rank from './components/Rank/Rank';
-import Clarifai from 'clarifai';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
-
-const app = new Clarifai.App({
-  apiKey: 'a5859fd113154c43a55a9bd841ca1987'
-});
 
 const particlesOption = {
   particles: {
@@ -88,14 +83,21 @@ class App extends Component {
 
   onButtonSubmit = (event) => {
     this.setState({ imageURL: this.state.input })
-    app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+      fetch('https://immense-sierra-90858.herokuapp.com/imageurl', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          input: this.state.input
+        })            
+      })
+      .then(response => response.json())
       .then(response => {
         if(response) {
           fetch('https://immense-sierra-90858.herokuapp.com/image', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              id: this.state.user.id,
+              id: this.state.user.id
             })            
           })
           .then(response => response.json())
