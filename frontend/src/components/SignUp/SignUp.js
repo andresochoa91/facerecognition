@@ -27,7 +27,7 @@ class SignUp extends Component {
 	}
 
 	OnSubmitSignUp = () => {
-		fetch('http://localhost:3000/signup', {
+		fetch('https://immense-sierra-90858.herokuapp.com/signup', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({
