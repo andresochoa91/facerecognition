@@ -10,6 +10,14 @@ import Rank from './components/Rank/Rank';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 
+<<<<<<< HEAD
+=======
+
+const app = new Clarifai.App({
+  apiKey: 'a5859fd113154c43a55a9bd841ca1987'
+});
+
+>>>>>>> parent of 6b4ec901... cleaner code
 const particlesOption = {
   particles: {
     number: {
