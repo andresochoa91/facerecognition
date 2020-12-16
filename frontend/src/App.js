@@ -9,15 +9,12 @@ import Particles from 'react-particles-js';
 import Rank from './components/Rank/Rank';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
-
-<<<<<<< HEAD
-=======
+import Clarifai from 'clarifai';
 
 const app = new Clarifai.App({
   apiKey: 'a5859fd113154c43a55a9bd841ca1987'
 });
 
->>>>>>> parent of 6b4ec901... cleaner code
 const particlesOption = {
   particles: {
     number: {
@@ -156,9 +153,9 @@ class App extends Component {
         <div>
           <Particles className="particles" params={ particlesOption } />
           {
-            route === "signin"?
-               this.mainPage():
-               (route === "signout"? this.signInForm(): this.signUpForm())    
+            route === "signin" ?
+            this.mainPage() :
+            (route === "signout"? this.signInForm(): this.signUpForm())    
           }
         </div>
       </div>
